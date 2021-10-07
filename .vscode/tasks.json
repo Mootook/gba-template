@@ -1,0 +1,51 @@
+{
+    "tasks": [
+        {
+            "label": "Make",
+            "type": "shell",
+            "command": "make",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "Make Clean",
+            "type": "shell",
+            "command": "make clean"
+        },
+        {
+            "label": "Run",
+            "type": "shell",
+            "dependsOn": "make",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "command": "open /Applications/mGBA/Applications/mGBA.app --args -g ${workspaceFolder}/${workspaceFolderBasename}.gba"
+        },
+        {
+            "label": "stop",
+            "type": "shell",
+            "osx": {
+                "command": "killall mGBA"
+            }
+        },
+        {
+            "label": "Debug",
+            "type": "shell",
+            "dependsOn": [
+                "Make"
+            ],
+            "osx": {
+                "command": "open /Applications/mGBA/Applications/mGBA.app --args -g ${workspaceFolder}/${workspaceFolderBasename}.gba"
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "new",
+                "clear": true
+            }
+        }
+    ],
+    "version": "2.0.0"
+}
